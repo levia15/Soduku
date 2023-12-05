@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import Cell from "./Cell";
 
 export default function Puzzle(props) {
     const puzzle = props.puzzle;
@@ -8,7 +9,8 @@ export default function Puzzle(props) {
             {puzzle.map((row, r) => (
                 <div key={r}>
                     {row.map((cell, c) => (
-                        <span key={c}>{cell}</span>
+                        //<span key={c}>{cell}</span>
+                        <Cell cell={cell}></Cell>
                     ))}
                 </div>
             ))}

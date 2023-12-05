@@ -16,10 +16,8 @@ export default function Layout() {
             .catch(err => {
                 console.error(err);
             });
-
      }
     
-   
     return (
         <>
             {isPuzzleCreated ? <Puzzle puzzle={sudoku}></Puzzle> : <></>}
