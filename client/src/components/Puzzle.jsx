@@ -1,10 +1,17 @@
 import React from "react";
 
-export default function Puzzle () {
-
+export default function Puzzle(props) {
+    const puzzle = props.puzzle;
+    console.log(puzzle);
     return (
         <>
-            <p>puzzle</p>
+            {puzzle.map((row, r) => (
+                <div key={r}>
+                    {row.map((cell, c) => (
+                        <span key={c}>{cell}</span>
+                    ))}
+                </div>
+            ))}
         </>
     )
 }
