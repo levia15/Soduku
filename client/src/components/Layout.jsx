@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import Puzzle from "./Puzzle.jsx";
+import Puzzle from "./Puzzle/Puzzle.jsx";
 
 export default function Layout() {
     const [sudoku, setsudoku] = useState([]);

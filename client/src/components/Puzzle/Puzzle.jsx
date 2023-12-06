@@ -1,6 +1,6 @@
 import React from "react"
-import Cell from "./Cell";
-import "./Cell.css"
+import Cell from "../Cell/Cell";
+import "../Cell/Cell.css"
 import "./Puzzle.css"
 
 export default function Puzzle(props) {
