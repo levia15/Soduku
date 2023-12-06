@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 
 export default function Cell(props) {
-    const cell = props.cell;
+    const value = props.value;
+    const cellCol = props.cellCol;
     return (
         <>
-           <span className='sudoku-cell'>{cell !==0 ? cell : ''}</span>
+        {(cellCol+1)%3==0 ? 
+            <span className='sudoku-cell-thick'> {value !==0 ? value : ''}</span> : <span className='sudoku-cell'> {value !==0 ? value : ''}</span>}
         </>
     )
 }
