@@ -4,7 +4,7 @@ export default function Cell(props) {
     const cell = props.cell;
     return (
         <>
-           <span className='sudoku-cell'>{cell}</span>
+           <span className='sudoku-cell'>{cell !==0 ? cell : ''}</span>
         </>
     )
 }
