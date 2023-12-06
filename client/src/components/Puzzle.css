@@ -1,0 +1,11 @@
+.sudoku-board {
+    border: 3px solid;
+    margin: auto;
+    width: fit-content;
+  }
+  
+.sudoku-row {
+    display: flex;
+  }
+  
+ 
