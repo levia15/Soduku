@@ -6,18 +6,20 @@ export default function Cell(props) {
     const cellCol = props.cellCol; 
     const cellRow = props.cellRow;
 
-    const setValidInput = (e) => {
-        const inputValue = e.target.value;
+    const changeValidInput = (e) => {
+                const inputValue = e.key;
 
-        if (/^[1-9]$/.test(inputValue) || inputValue === '') {
-            setValue(inputValue)
-        }
+                if (/^[1-9]$/.test(inputValue)) {
+                    setValue(inputValue)
+                } else if(inputValue === 'Backspace') {
+                    setValue('');
+                }
     }
 
     return (
         <>
             <input 
-                onInput={setValidInput} 
+                onKeyDown={changeValidInput}
                 readonly={isEditable ? false : 'readonly'} 
                 value={value} 
                 className={(cellCol==2 || cellCol==5)? "sudoku-cell-thick" : "sudoku-cell"}
