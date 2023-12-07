@@ -9,7 +9,7 @@ export default function Puzzle(props) {
         <>
             <div className="sudoku-board">
                 {puzzle.map((row, r) => ( 
-                    <div className={(r+1)%3==0 ? "sudoku-row-thick" : "sudoku-row"}>
+                    <div className={(r==2 || r==5) ? "sudoku-row-thick" : "sudoku-row"}>
                         {row.map((cell, c) => (
                             <Cell value={cell} cellCol={c} cellRow={r}></Cell>
                         ))}

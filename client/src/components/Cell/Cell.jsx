@@ -7,7 +7,7 @@ export default function Cell(props) {
 
     return (
         <>
-            <input readonly={value == 0 ? false : 'readonly'} placeholder={props.value !==0 ? value : ''} className={(cellCol+1)%3==0 ? "sudoku-cell-thick" : "sudoku-cell"}/>
+            <input readonly={value == 0 ? false : 'readonly'} placeholder={props.value !==0 ? value : ''} className={(cellCol==2 || cellCol==5)? "sudoku-cell-thick" : "sudoku-cell"}/>
         </>
     )
 }
