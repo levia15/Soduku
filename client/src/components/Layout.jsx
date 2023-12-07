@@ -12,6 +12,9 @@ export default function Layout() {
             .then(response => {
                 setsudoku(response.data.payload[0].rows);
                 setIsPuzzleCreated(true);
+                Array.from(document.querySelectorAll("input")).forEach(
+                    input => (input.value = "")
+                  );
             })
             .catch(err => {
                 console.error(err);
