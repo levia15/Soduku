@@ -1,19 +1,26 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import {PuzzleContext} from "../Layout"
 
 export default function Cell(props) {
-    const [value, setValue] = useState(props.value !==0 ? props.value :'');
-    const [isEditable] = useState(props.value !==0 ? false : true);
+    const {sudoku, setSudoku} = useContext(PuzzleContext);
     const cellCol = props.cellCol; 
     const cellRow = props.cellRow;
+    const [isEditable] = useState(sudoku[cellRow][cellCol] !==0 ? false : true);
+
+    const updateCell = (value) => {
+        let newSudoku = sudoku.slice(); 
+        newSudoku[cellRow][cellCol] = value;
+        setSudoku(newSudoku); 
+    }
 
     const changeValidInput = (e) => {
-                const inputValue = e.key;
+        const inputValue = e.key;
 
-                if (/^[1-9]$/.test(inputValue)) {
-                    setValue(inputValue)
-                } else if(inputValue === 'Backspace') {
-                    setValue('');
-                }
+        if (/^[1-9]$/.test(inputValue)) {
+            updateCell(inputValue)      
+        } else if(inputValue === 'Backspace') {
+            updateCell(0)
+        }
     }
 
     return (
@@ -21,7 +28,7 @@ export default function Cell(props) {
             <input 
                 onKeyDown={changeValidInput}
                 readonly={isEditable ? false : 'readonly'} 
-                value={value} 
+                value={sudoku[cellRow][cellCol] == 0 ? '' : sudoku[cellRow][cellCol]} 
                 className={(cellCol==2 || cellCol==5)? "sudoku-cell-thick" : "sudoku-cell"}
             />
         </>

@@ -1,16 +1,18 @@
-import React, {useState} from "react";
+import React, {useState, createContext} from "react";
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import Puzzle from "./Puzzle/Puzzle.jsx";
 
+export const PuzzleContext = createContext([]);
+
 export default function Layout() {
-    const [sudoku, setsudoku] = useState([]);
+    const [sudoku, setSudoku] = useState([]);
     const [isPuzzleCreated, setIsPuzzleCreated] = useState(false);
 
     const getsudoku = () => {
         axios.get('https://sudokucollective.com/api/v1/games/createannonymous', { params: { DifficultyLevel: 2 } })
             .then(response => {
-                setsudoku(response.data.payload[0].rows);
+                setSudoku(response.data.payload[0].rows);
                 setIsPuzzleCreated(true);
                 Array.from(document.querySelectorAll("input")).forEach(
                     input => (input.value = "")
@@ -23,7 +25,11 @@ export default function Layout() {
     
     return (
         <>
-            {isPuzzleCreated ? <Puzzle puzzle={sudoku}></Puzzle> : <></>}
+            {isPuzzleCreated ? 
+                <PuzzleContext.Provider value={{sudoku, setSudoku}}>
+                    <Puzzle></Puzzle>
+                </PuzzleContext.Provider>
+            : <></>}
             <Button onClick={getsudoku}>Generate</Button>
         </>
     )
