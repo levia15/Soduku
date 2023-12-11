@@ -5,7 +5,8 @@ export default function Cell(props) {
     const {sudoku, setSudoku} = useContext(PuzzleContext);
     const cellCol = props.cellCol; 
     const cellRow = props.cellRow;
-    const [isEditable] = useState(sudoku[cellRow][cellCol] !==0 ? false : true);
+    const isEditable = sudoku[cellRow][cellCol] !==0 ? false : true
+    
 
     const updateCell = (value) => {
         let newSudoku = sudoku.slice(); 
