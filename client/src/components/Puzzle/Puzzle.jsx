@@ -5,21 +5,35 @@ import "./Puzzle.css"
 import {PuzzleContext} from "../Layout"
 
 export default function Puzzle(props) {
+    const sudokuSolution = props.sudokuSolution
     const {sudoku, setSudoku} = useContext(PuzzleContext);
     const [isComplete, setIsComplete] = useState(false)
+    const [isSolved, setIsSolved] = useState(false)
 
     useEffect(() => {
-         isCompleteFunc();
-         isComplete ? console.log('complete') : console.log('incomplete')
+        isCompleteFunc();
+        //CHANGE
+        //setIsComplete(true)
+        if(isComplete)
+            isSolvedFunc();
+        console.log(isSolved);
       }, );
 
     const isCompleteFunc = () => {
         for (var r = 0; r < sudoku.length; r++) {
             if(sudoku[r].includes(0))
                 break;
-            if(r === sudoku.length - 1)
-                setIsComplete(true)
+            if(r === sudoku.length - 1) {
+                setIsComplete(true);
+            }
         }
+    }
+
+    const isSolvedFunc = () => {
+       // console.log(JSON.stringify(sudoku))
+        //console.log(JSON.stringify(sudokuSolution))
+
+        setIsSolved(JSON.stringify(sudoku) === JSON.stringify(sudokuSolution))
     }
 
     return (
@@ -28,7 +42,7 @@ export default function Puzzle(props) {
                 {sudoku.map((row, r) => ( 
                     <div className={(r==2 || r==5) ? "sudoku-row-thick" : "sudoku-row"}>
                         {row.map((cell, c) => (
-                            <Cell cellCol={c} cellRow={r}></Cell>
+                            <Cell onChange={isCompleteFunc} cellCol={c} cellRow={r}></Cell>
                         ))}
                     </div>
                 )) }

@@ -26,7 +26,6 @@ export default function Layout() {
             
      }
      const getSudokuSolution = (getSudoku) => {
-        console.log(getSudoku);
         axios.request({
             method: 'POST',
             url: 'https://sudokucollective.com/api/v1/solutions/solve',
@@ -47,6 +46,8 @@ export default function Layout() {
             })
         })
         .then(response => {
+            //CHANGE
+            //setSudoku(response.data.payload[0].rows)
             setSudokuSolution(response.data.payload[0].rows);
         })
         .catch(err => {
@@ -59,7 +60,7 @@ export default function Layout() {
         <>
             {isPuzzleCreated ? 
                 <PuzzleContext.Provider value={{sudoku, setSudoku}}>
-                    <Puzzle></Puzzle>
+                    <Puzzle sudokuSolution={sudokuSolution}></Puzzle>
                 </PuzzleContext.Provider>
             : <></>}
             <Button onClick={getSudoku}>Generate</Button>

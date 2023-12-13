@@ -10,7 +10,7 @@ export default function Cell(props) {
 
     const updateCell = (value) => {
         let newSudoku = sudoku.slice(); 
-        newSudoku[cellRow][cellCol] = value;
+        newSudoku[cellRow][cellCol] = parseInt(value);
         setSudoku(newSudoku); 
     }
 
